@@ -9,20 +9,22 @@
 7. Upload your Jupyter code file (*.ipynb)
 
 ## 說明
+>去背
 ```python
 def getMask(roi, img2):
 ```
 這裡是取得帽子跟鬍子的去背圖
-
 `roi`是背景, `img2`是要貼的物件
+
+>Detection
 ```python
 cv2.CascadeClassifier().detectMultiScale()
 ```
 `CascadeClassifier()`裡面放xml
 `detectMultiScale()`的參數會影響detection結果, 可以研究一下
 
-Face部分
-```python=
+>Face部分
+```python
 sw = (w/304)
 sh = int(277*sw)
 hat = cv2.resize(hat, (w, sh), interpolation=cv2.INTER_CUBIC)
@@ -35,8 +37,8 @@ frame[y-int(0.6*h):y+sh-int(0.6*h), x:x+w] = dst)
 物件蓋上的方法是先抓一塊要放物件的區塊(注意size要跟物件size一樣)
 不過物件不知道為啥放進來都有白色背景, 所以我手動去背(`getMas()`)
 
-Mouth部分
-```python=
+>Mouth部分
+```python
 nx = x-int(0.5*w)
 nX = x+int(0.5*w)+w
 ny = y-int(0.5*h)
