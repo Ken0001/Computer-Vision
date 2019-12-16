@@ -56,9 +56,9 @@ Eyes
 
 注意
 ---
-感謝你的注意<b>
-第3.中提到要用BGRA代表讀圖要用`hat = cv2.imread("hat.png", cv2.IMREAD_UNCHANGED)`<b>
-我猜他可能想用`cv2.addWeight()`方式做這作業<b>
+感謝你的注意<br>
+第3.中提到要用BGRA代表讀圖要用`hat = cv2.imread("hat.png", cv2.IMREAD_UNCHANGED)`<br>
+我猜他可能想用`cv2.addWeight()`方式做這作業<br>
 ```python
 # cv2.addWeighted(背景, 背景透明度比例, 物件, 物件透明度比例, Gamma值)
 add = cv2.addWeighted(frame[y:y+h, x:x+w, :], alpha, hat, 1-alpha, 0)
