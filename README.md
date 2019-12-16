@@ -9,21 +9,24 @@
 7. Upload your Jupyter code file (*.ipynb)
 
 ## 說明
->去背
+去背
+---
 ```python
 def getMask(roi, img2):
 ```
 這裡是取得帽子跟鬍子的去背圖
 `roi`是背景, `img2`是要貼的物件
 
->Detection
+Detection
+---
 ```python
 cv2.CascadeClassifier().detectMultiScale()
 ```
 `CascadeClassifier()`裡面放xml
 `detectMultiScale()`的參數會影響detection結果, 可以研究一下
 
->Face部分
+Face
+---
 ```python
 sw = (w/304)
 sh = int(277*sw)
@@ -37,7 +40,8 @@ frame[y-int(0.6*h):y+sh-int(0.6*h), x:x+w] = dst)
 物件蓋上的方法是先抓一塊要放物件的區塊(注意size要跟物件size一樣)
 不過物件不知道為啥放進來都有白色背景, 所以我手動去背(`getMas()`)
 
->Mouth部分
+Mouth
+---
 ```python
 nx = x-int(0.5*w)
 nX = x+int(0.5*w)+w
@@ -45,3 +49,21 @@ ny = y-int(0.5*h)
 nY = y-int(0.5*h)+int(1.35*h)
 ```
 跟上面一樣
+
+Eyes
+---
+呃 範例有但作業沒用到???
+
+注意
+---
+感謝你的注意
+第3.中提到要用BGRA代表讀圖要用`hat = cv2.imread("hat.png", cv2.IMREAD_UNCHANGED)`
+我猜他可能想用`cv2.addWeight()`方式做這作業
+```python
+# cv2.addWeighted(背景, 背景透明度比例, 物件, 物件透明度比例, Gamma值)
+add = cv2.addWeighted(frame[y:y+h, x:x+w, :], alpha, hat, 1-alpha, 0)
+# 把一樣的位置取代掉
+frame[y:y+h, x:x+w, :] = add 
+```
+這不難但會有白色背景
+註解裡面有
