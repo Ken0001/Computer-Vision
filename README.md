@@ -12,7 +12,7 @@
 去背
 ---
 ```python
-def getMask(roi, img2):
+def addImg(roi, img2):
 ```
 這裡是取得帽子跟鬍子的去背圖
 `roi`是背景, `img2`是要貼的物件
