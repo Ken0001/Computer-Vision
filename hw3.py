@@ -43,7 +43,13 @@ while True:
         sw = (w/304)
         sh = int(277*sw)
         hat = cv2.resize(hat, (w, sh), interpolation=cv2.INTER_CUBIC)
-        roi = frame[y-int(0.6*h):y+sh-int(0.6*h), x:x+w]
+        fx = x
+        fX = x+w
+        fy = y-int(0.6*h)
+        fY = y+sh-int(0.6*h)
+        roi = frame[fy:fY, fx:fX]
+        if(fX >= 320 or fx <= 0 or fY>=240 or fy <= 0):
+            break
         #print("ROI",roi.shape,",HAT",mus.shape," ALL",(x,y,w,h))
         dst = getMask(roi, hat)
         frame[y-int(0.6*h):y+sh-int(0.6*h), x:x+w] = dst
